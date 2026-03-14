@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 from database import engine, get_db
 import models
+import schemas
 
 # Isso aqui substitui aquele botão vermelho de "Construir Tabelas" do Streamlit!
 # Sempre que a API ligar, ela garante que as tabelas existem no Supabase.
