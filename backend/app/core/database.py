@@ -5,7 +5,7 @@ from sqlalchemy.orm import sessionmaker
 # URL de conexão direta com o Postgres do Supabase
 SQLALCHEMY_DATABASE_URL = os.getenv(
     "DATABASE_URL", 
-    "postgresql://postgres:SUA_SENHA_AQUI@db.seu-projeto.supabase.co:5432/postgres" 
+    "postgresql://postgres:GestoBapEdu2026@db.seu-projeto.supabase.co:5432/postgres" 
 )
 
 engine = create_engine(SQLALCHEMY_DATABASE_URL, pool_pre_ping=True)
