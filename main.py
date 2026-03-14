@@ -1,5 +1,12 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Depends
 from fastapi.middleware.cors import CORSMiddleware
+from sqlalchemy.orm import Session
+from database import engine, get_db
+import models
+
+# Isso aqui substitui aquele botão vermelho de "Construir Tabelas" do Streamlit!
+# Sempre que a API ligar, ela garante que as tabelas existem no Supabase.
+models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI(
     title="GestoBapEdu 2.0 API",
@@ -18,3 +25,10 @@ app.add_middleware(
 @app.get("/")
 def read_root():
     return {"status": "🚀 API GestoBapEdu 2.0 está Online na Nuvem!"}
+
+# 🚀 SEU PRIMEIRO ENDPOINT DE DADOS!
+@app.get("/bancas")
+def listar_bancas(db: Session = Depends(get_db)):
+    # Pede para o banco listar todas as bancas
+    bancas = db.query(models.Banca).all()
+    return {"total": len(bancas), "bancas": bancas}
